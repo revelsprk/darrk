@@ -389,7 +389,7 @@ export default function RoomPage() {
 
           <div className="flex flex-col">
             {selectedReplyMessageId && (
-              <div className="p-2 rounded-sm shadow-sm border-l-4 border-blue-600 mb-4 flex items-center ">
+              <div className="p-2 rounded-sm shadow-sm border-l-4 border-blue-600 mb-4 flex items-center bg-zinc-50">
                 <div>
                   <p className="text-sm text-zinc-600 mb-0.5">リプライ:</p>
                   {messages.find((m) => m.id === selectedReplyMessageId)?.text && (
@@ -398,11 +398,11 @@ export default function RoomPage() {
                     </p>
                   )}
                 </div>
-                <Button className="ml-auto" variant="danger" size="sm" onClick={() => setSelectedReplyMessageId(null)}>解除</Button>
+                <Button className="ml-auto" variant="outline" size="sm" onClick={() => setSelectedReplyMessageId(null)}>解除</Button>
               </div>
             )}
             <div className="flex items-center w-full">
-              <input type="text" value={username} onChange={handleUsernameChange} className="w-full flex items-center px-4 h-10 overflow-hidden rounded-sm border shadow-sm bg-white border-zinc-200 focus:ring-2 focus:border-blue-400 focus:ring-blue-50 duration-200 outline-none" placeholder="名無し野郎@おーぶん" />
+              <input type="text" value={username} onChange={handleUsernameChange} className="w-full flex items-center px-4 h-10 overflow-hidden rounded-sm border shadow-sm bg-white border-zinc-200 focus:ring-2 focus:border-blue-400 focus:ring-blue-50 duration-200 outline-none" placeholder="名無しさん@おーぶん" />
               <Button onClick={sendMessage} className="ml-2">送信</Button>
             </div>
             <textarea value={message} onChange={(e) => setMessage(e.target.value)} className="mt-2 resize-none flex items-center p-4 overflow-hidden rounded-sm border shadow-sm bg-white border-zinc-200 focus:ring-2 focus:border-blue-400 focus:ring-blue-50 duration-200 outline-none" placeholder="メッセージを入力してください" rows={2}/>
@@ -427,7 +427,7 @@ export default function RoomPage() {
               });
 
               return (
-                <div key={index} className="p-4 bg-white shadow-sm border border-zinc-200 rounded-sm flex flex-col">
+                <div key={index} className="p-4 bg-white shadow-sm border border-zinc-200 hover:bg-zinc-50 rounded-sm flex flex-col">
                   <div className="flex items-center mb-2">
                     <Avatar name={msg.username} />
                     <p className="text-sm font-bold mx-2 line-clamp-1">{msg.username}</p>

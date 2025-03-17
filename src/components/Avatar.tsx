@@ -19,7 +19,7 @@ const Avatar: React.FC<AvatarProps> = ({ name, size = 'md' }) => {
     <img
       src={imageUrl}
       alt="^_^"
-      className={`select-none aspect-square bg-white flex items-center justify-center bg-yellow-400 text-white font-bold text-base rounded-full ${sizeClasses[size]}`} // Tailwindのクラスを適用
+      className={`select-none aspect-square bg-white flex items-center justify-center bg-yellow-400 text-white font-bold text-base rounded-sm ${sizeClasses[size]}`} // Tailwindのクラスを適用
     />
   );
 };
