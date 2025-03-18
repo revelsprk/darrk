@@ -13,6 +13,7 @@ import Image from "next/image";
 import { FaHeart, FaReply } from "react-icons/fa";
 import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
+import CuisineRoulette from "@/components/CuisineRoulette";
 
 interface Message {
   id: string;
@@ -49,6 +50,8 @@ export default function RoomPage() {
   const [selectedReplyMessageId, setSelectedReplyMessageId] = useState<string | null>(null);
   const [expandedVotes, setExpandedVotes] = useState<{ [key: string]: boolean }>({});
   const [isBackgroundVisible, setIsBackgroundVisible] = useState(false);
+  const [selectedReplyMessage, setSelectedReplyMessage] = useState<Message | null>(null);
+  const [isReplyModalOpen, setIsReplyModalOpen] = useState(false);
 
   const dropdownRef = useRef<HTMLDivElement>(null);
   const smileDropdownRef = useRef<HTMLDivElement>(null);
@@ -287,7 +290,7 @@ export default function RoomPage() {
   return (
     <div>
       {isBackgroundVisible && <><div className="yaju fixed inset-0 bg-[url('/beast.webp')] bg-cover bg-center"></div>
-      <div className="yaju w-full h-screen fixed inset-0 backdrop-blur-3xl bg-white/75 flex items-center justify-center" />
+      <div className="yaju w-full h-screen fixed inset-0 backdrop-blur-md bg-white/50 flex items-center justify-center" />
       </>}
 
       {/* Header */}
@@ -295,17 +298,19 @@ export default function RoomPage() {
         <Link href="/" className="flex items-center"><Image src="/azarashi.svg" alt="Logo" width={100} height={100} className="h-6 w-fit" /></Link><p className="mx-2 line-clamp-1 font-bold">{roomName || "Loading..."}</p>
         <div className="ml-auto relative z-10">
           <Button variant="outline" size="sm" onClick={() => setIsDropdownOpen(!isDropdownOpen)}>設定</Button>
-          <div ref={dropdownRef} className={`absolute right-0 mt-2 w-64 bg-white rounded-lg special-shadow p-2 overflow-hidden transition-all duration-200 ease-in-out ${ isDropdownOpen ? "scale-100 opacity-100" : "scale-95 opacity-0 pointer-events-none"}`}>
-            <Button onClick={() => setIsVoteModalOpen(true)} variant="text" icon={<FiPlus />} className="rounded-none w-full font-normal">投票を作成する</Button>
-            <Button onClick={deleteRoom} variant="text" icon={<FiTrash />} className="rounded-none w-full font-normal">コミュニティを削除する</Button>
-            <Button onClick={hideBackground} variant="danger" icon={<FiAlertCircle />} className="rounded-none w-full font-normal">YAJU&U</Button>
+          <div ref={dropdownRef} className={`absolute right-0 mt-2 w-64 bg-white rounded-sm special-shadow p-2 transition-all duration-200 ease-in-out ${ isDropdownOpen ? "scale-100 opacity-100" : "scale-95 opacity-0 pointer-events-none"}`}>
+            <Button onClick={() => setIsVoteModalOpen(true)} size="sm" variant="text" icon={<FiPlus />} className="rounded-none w-full font-normal">投票を作成する</Button>
+            <Button onClick={deleteRoom} variant="text" size="sm" icon={<FiTrash />} className="rounded-none w-full font-normal">コミュニティを削除する</Button>
+            <Button onClick={hideBackground} variant="danger" size="sm" icon={<FiAlertCircle />} className="rounded-none w-full font-normal overflow-hidden">ﾔｼﾞｭｾﾝﾊﾟｲｲｷｽｷﾞﾝｲｸｲｸｱｯｱｯｱｯｱｰﾔﾘﾏｽﾈ</Button>
           </div>
         </div>
       </div>
 
+    <CuisineRoulette />
+
       {votes.length > 0 && (<div className="space-y-4 mb-8 hidden md:block max-w-64 fixed w-full top-24 right-8">
               {votes.map((vote) => (
-                <div key={vote.id} className="p-4 rounded-sm bg-white shadow-md border border-zinc-200">
+                <div key={vote.id} className="p-4 rounded-sm bg-white shadow-sm border border-zinc-200">
                   <div className="flex items-center mb-4">
                     <h3>{vote.question}</h3>
                     <div className="flex items-center ml-auto">
@@ -324,10 +329,10 @@ export default function RoomPage() {
                           </div>
                           <button
                             onClick={() => handleVote(vote.id, index)}
-                            className="w-full h-8 rounded-sm relative overflow-hidden bg-zinc-50"
+                            className="w-full h-8 rounded-sm relative overflow-hidden bg-zinc-50 shadow-inner"
                           >
                             <div
-                              className={`absolute inset-0 ${hasVotes ? 'bg-green-400' : 'bg-zinc-50'}`}
+                              className={`absolute inset-0 ${hasVotes ? 'bg-blue-400' : 'bg-zinc-50'}`}
                               style={{
                                 width: hasVotes
                                   ? `${Math.round((vote.votes[index] / totalVotes) * 100)}%`
@@ -368,10 +373,10 @@ export default function RoomPage() {
                           </div>
                           <button
                             onClick={() => handleVote(vote.id, index)}
-                            className="w-full h-8 rounded-sm relative overflow-hidden bg-zinc-50"
+                            className="w-full h-8 rounded-sm relative overflow-hidden bg-zinc-50 shadow-inner"
                           >
                             <div
-                              className={`absolute inset-0 ${hasVotes ? 'bg-green-400' : 'bg-zinc-50'}`}
+                              className={`absolute inset-0 ${hasVotes ? 'bg-blue-400' : 'bg-zinc-50'}`}
                               style={{
                                 width: hasVotes
                                   ? `${Math.round((vote.votes[index] / totalVotes) * 100)}%`
@@ -391,14 +396,12 @@ export default function RoomPage() {
           <div className="flex flex-col">
             {selectedReplyMessageId && (
               <div className="p-2 rounded-sm shadow-sm border-l-4 border-blue-600 mb-4 flex items-center bg-zinc-50">
-                <div>
-                  <p className="text-sm text-zinc-600 mb-0.5">リプライ:</p>
+                  <p className="text-sm text-zinc-600 mr-2 whitespace-nowrap">リプライ:</p>
                   {messages.find((m) => m.id === selectedReplyMessageId)?.text && (
-                    <p className="text-sm text-zinc-600 mr-2">
+                    <p className="text-sm text-zinc-600 mr-2 line-clamp-2">
                       {messages.find((m) => m.id === selectedReplyMessageId)?.text}
                     </p>
                   )}
-                </div>
                 <Button className="ml-auto" variant="outline" size="sm" onClick={() => setSelectedReplyMessageId(null)}>解除</Button>
               </div>
             )}
@@ -422,22 +425,30 @@ export default function RoomPage() {
               });
 
               return (
-                <div key={index} className="p-4 bg-white shadow-sm border border-zinc-200 hover:bg-zinc-50/50 rounded-sm flex flex-col">
+                <div key={index} className="p-4 bg-white shadow-sm border border-zinc-200 rounded-sm flex flex-col">
                   <div className="flex items-center mb-2">
                     <Avatar name={msg.username} />
                     <p className="text-sm font-bold mx-2 line-clamp-1">{msg.username}</p>
                     <p className="text-sm text-zinc-400 whitespace-nowrap">{formatRelativeTime(msg.createdAt)}</p>
                   </div>
+
+    
                   {msg.replyTo && (
-                      <div className="p-2 rounded-sm shadow-sm border-l-4 border-blue-600 mb-2 flex items-center bg-zinc-50">
-                        <p className="text-sm text-zinc-600 mb-0.5">リプライ:</p>
+                      <button className="p-2 rounded-sm shadow-sm border-l-4 border-blue-600 mb-2 flex bg-zinc-50" onClick={() => {
+                        const replyMessage = messages.find((m) => m.id === msg.replyTo);
+                        if (replyMessage) {
+                          setSelectedReplyMessage(replyMessage);
+                          setIsReplyModalOpen(true);
+                        }
+                      }}>
+                        <p className="text-sm text-zinc-600 mr-2 whitespace-nowrap">リプライ:</p>
                         {messages.find((m) => m.id === msg.replyTo)?.text && (
-                          <p className="text-sm text-zinc-600">{messages.find((m) => m.id === msg.replyTo)?.text}</p>
+                          <p className="text-sm text-zinc-600 line-clamp-2 default">{messages.find((m) => m.id === msg.replyTo)?.text}</p>
                         )}
-                      </div>
+                      </button>
                     )}
                   <div
-                    className="md flex flex-col whitespace-pre-wrap"
+                    className="md flex flex-col whitespace-pre-wrap default"
                     dangerouslySetInnerHTML={{ __html: marked(formattedText) }}
                   />
 
@@ -462,6 +473,23 @@ export default function RoomPage() {
         </div>
         </div>
     
+    {isReplyModalOpen && selectedReplyMessage && (
+      <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur z-50">
+        <div className="bg-white rounded-sm p-6 md:w-1/4 w-3/4">
+          <h3 className="font-bold text-xl mb-4">リプライ元メッセージ</h3>
+          <div className="mb-4">
+            <div className="flex items-center mb-2">
+              <Avatar name={selectedReplyMessage.username} />
+              <p className="text-sm font-bold mx-2 line-clamp-1">{selectedReplyMessage.username}</p>
+            </div>
+            <p className="mt-2 text-sm default text-zinc-600">{selectedReplyMessage.text}</p>
+          </div>
+          <Button className="mt-4 ml-auto" onClick={() => setIsReplyModalOpen(false)} variant="secondary">
+            閉じる
+          </Button>
+        </div>
+      </div>
+    )}
 
       <VoteModal  isOpen={isVoteModalOpen}  closeModal={() => setIsVoteModalOpen(false)}  voteQuestion={voteQuestion}  setVoteQuestion={setVoteQuestion}  voteOptions={voteOptions}  setVoteOptions={setVoteOptions}  createVote={createVote} />
     </div>

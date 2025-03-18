@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Shippori+Mincho&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=DotGothic16&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -134,7 +135,7 @@ body {
 }
 
 .special-shadow {
-  box-shadow: 0 0 6px 2px rgb(0 0 0 / 0.1);
+  box-shadow: 0 0 4px 2px rgb(0 0 0 / 0.1);
 }
 
 .yaju {

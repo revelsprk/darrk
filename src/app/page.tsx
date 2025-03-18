@@ -6,6 +6,7 @@ import Link from "next/link";
 import { FiPlus, FiSearch } from "react-icons/fi";
 import Image from "next/image";
 import Button from "@/components/ui/Button";
+import Input from "@/components/ui/Input";
 
 interface Room {
   id: string;
@@ -100,14 +101,12 @@ export default function Home() {
 
         <div className="mt-8 grid grid-cols-1 md:grid-cols-4 gap-8">
           {filteredRooms.length > 0 && filteredRooms.map((room, index) => (
-            <div key={index} className="rounded-sm shadow-sm bg-white overflow-hidden hover:shadow-md duration-200 hover:translate-y-[-8px]">
-              <img src={`https://api.dicebear.com/9.x/pixel-art-neutral/svg?seed=${room.id}`} alt="avatar" className="h-32 w-full object-cover" />
-              <div className="flex p-4">
+            <div key={index} className="flex flex-row md:flex-col rounded-sm shadow-sm bg-white overflow-hidden hover:shadow-md duration-200 hover:translate-y-[-8px] h-16 md:h-auto">
+              <img src={`https://api.dicebear.com/9.x/thumbs/svg?seed=${room.id}&backgroundColor=e4e4e7&eyesColor=a1a1aa&mouthColor=a1a1aa&shapeColor=transparent`} alt="avatar" className="md:h-32 h-16 md:w-full bg-zinc-200 w-16" />
+              <div className="flex items-center md:items-start p-4">
                 <p className="text-lg line-clamp-2 mr-4">{room.name}</p>
-                <div className="ml-auto flex">
-                  <Link href={`/${room.id}`}>
-                    <p className="px-4 py-2 rounded-sm font-bold bg-blue-600 text-white whitespace-nowrap">参加</p>
-                  </Link>
+                <div className="ml-auto">
+                  <Link href={`/${room.id}`}><p className="px-4 py-2 rounded-sm font-bold bg-blue-600 text-white whitespace-nowrap">参加</p></Link>
                 </div>
               </div>
             </div>
@@ -121,20 +120,20 @@ export default function Home() {
 
       {showModal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50 backdrop-blur">
-          <div className="bg-white p-6 rounded-lg w-3/4 md:w-1/4">
-            <h1 className="text-xl mb-4">コミュニティを新規作成</h1>
-            <input
+          <div className="bg-white p-6 rounded-sm w-3/4 md:w-1/4">
+            <h1 className="text-xl mb-4 font-bold">コミュニティを新規作成</h1>
+            <Input
               type="text"
               value={roomName}
               onChange={(e) => setRoomName(e.target.value)}
-              className="px-4 py-2 border border-zinc-200 rounded-lg mb-2 w-full"
+              className="mb-2 w-full"
               placeholder="ルームの名前"
             />
-            <input
+            <Input
               type="text"
               value={roomId}
               onChange={(e) => setRoomId(e.target.value.toLowerCase())}
-              className="px-4 py-2 border border-zinc-200 rounded-lg mb-4 w-full"
+              className="mb-4 w-full"
               placeholder="識別ID"
             />
 
