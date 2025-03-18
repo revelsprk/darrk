@@ -6,12 +6,13 @@ import { usePathname } from "next/navigation";
 import { formatDistanceToNow } from "date-fns"; 
 import Link from "next/link";
 import { FiAlertCircle, FiPlus, FiTrash } from "react-icons/fi";
-import Avatar from "@/components/Avatar";
+import Avatar from "@/components/ui/Avatar";
 import { marked } from "marked";
 import VoteModal from "@/components/VoteModal";
 import Image from "next/image";
 import { FaHeart, FaReply } from "react-icons/fa";
 import Button from "@/components/ui/Button";
+import Input from "@/components/ui/Input";
 
 interface Message {
   id: string;
@@ -115,7 +116,7 @@ export default function RoomPage() {
     }
   };  
 
-  const handleUsernameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleUsernameChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setUsername(e.target.value);
   };
 
@@ -290,7 +291,7 @@ export default function RoomPage() {
       </>}
 
       {/* Header */}
-      <div className="px-8 py-4 flex items-center select-none h-16 bg-white/25 backdrop-blur-xl z-50 sticky top-0 shadow-md">
+      <div className="px-8 py-4 flex items-center select-none h-16 bg-white/25 backdrop-blur-md z-50 sticky top-0 shadow-md">
         <Link href="/" className="flex items-center"><Image src="/azarashi.svg" alt="Logo" width={100} height={100} className="h-6 w-fit" /></Link><p className="mx-2 line-clamp-1 font-bold">{roomName || "Loading..."}</p>
         <div className="ml-auto relative z-10">
           <Button variant="outline" size="sm" onClick={() => setIsDropdownOpen(!isDropdownOpen)}>設定</Button>
@@ -306,7 +307,7 @@ export default function RoomPage() {
               {votes.map((vote) => (
                 <div key={vote.id} className="p-4 rounded-sm bg-white shadow-md border border-zinc-200">
                   <div className="flex items-center mb-4">
-                    <h3 className="font-normal text-sm">{vote.question}</h3>
+                    <h3>{vote.question}</h3>
                     <div className="flex items-center ml-auto">
                       <Button  onClick={() => deleteVote(vote.id)} variant="danger" size="sm" className="mr-2">削除</Button>
                       </div>
@@ -316,7 +317,7 @@ export default function RoomPage() {
                       const totalVotes = vote.votes.reduce((a, b) => a + b, 0);
                       const hasVotes = totalVotes > 0;
                       return (
-                        <div key={index} className="space-y-2">
+                        <div key={index} className="space-y-2 select-none">
                           <div className="flex items-center">
                             <p>{option}</p>
                             <span className="ml-2 text-sm text-zinc-400">{`(${vote.votes[index]})`}</span>
@@ -348,7 +349,7 @@ export default function RoomPage() {
               {votes.map((vote) => (
                 <div key={vote.id} className="p-4 rounded-sm bg-white shadow-sm border border-zinc-200">
                   <div className="flex items-center">
-                    <h3 className="font-normal text-sm">{vote.question}</h3>
+                    <h3>{vote.question}</h3>
                     <div className="flex items-center ml-auto">
                       <Button  onClick={() => deleteVote(vote.id)} variant="danger" size="sm" className="mr-2">削除</Button>
                       <Button size="sm" variant="outline" onClick={() => toggleExpand(vote.id)}>{expandedVotes[vote.id] ? '縮小' : '拡大'}</Button>
@@ -360,7 +361,7 @@ export default function RoomPage() {
                       const totalVotes = vote.votes.reduce((a, b) => a + b, 0);
                       const hasVotes = totalVotes > 0;
                       return (
-                        <div key={index} className="space-y-2">
+                        <div key={index} className="space-y-2 select-none">
                           <div className="flex items-center">
                             <p>{option}</p>
                             <span className="ml-2 text-sm text-zinc-400">{`(${vote.votes[index]})`}</span>
@@ -393,7 +394,7 @@ export default function RoomPage() {
                 <div>
                   <p className="text-sm text-zinc-600 mb-0.5">リプライ:</p>
                   {messages.find((m) => m.id === selectedReplyMessageId)?.text && (
-                    <p className="text-sm text-zinc-600">
+                    <p className="text-sm text-zinc-600 mr-2">
                       {messages.find((m) => m.id === selectedReplyMessageId)?.text}
                     </p>
                   )}
@@ -402,22 +403,16 @@ export default function RoomPage() {
               </div>
             )}
             <div className="flex items-center w-full">
-              <input type="text" value={username} onChange={handleUsernameChange} className="w-full flex items-center px-4 h-10 overflow-hidden rounded-sm border shadow-sm bg-white border-zinc-200 focus:ring-2 focus:border-blue-400 focus:ring-blue-50 duration-200 outline-none" placeholder="名無しさん@おーぶん" />
-              <Button onClick={sendMessage} className="ml-2">送信</Button>
-            </div>
-            <textarea value={message} onChange={(e) => setMessage(e.target.value)} className="mt-2 resize-none flex items-center p-4 overflow-hidden rounded-sm border shadow-sm bg-white border-zinc-200 focus:ring-2 focus:border-blue-400 focus:ring-blue-50 duration-200 outline-none" placeholder="メッセージを入力してください" rows={2}/>
-            <div className="flex mt-4 items-center">
-              <div className="relative">
-                <Button variant="secondary" onClick={() => setIsSmileDropdownOpen(!isSmileDropdownOpen)} size="sm">スタンプ</Button>
-                <div ref={smileDropdownRef} className={`flex flex-wrap gap-2 absolute z-10 mt-2 left-0 w-64 bg-white rounded-lg special-shadow p-4 transition-all duration-200 ease-in-out ${ isSmileDropdownOpen ? "scale-100 opacity-100" : "scale-95 opacity-0 pointer-events-none"}`}>
-                  {stamps.map((stamp) => (
-                    <button key={stamp} onClick={() => handleStampClick(stamp)} className="w-10 h-10 aspect-square hover:bg-zinc-200 duration-200 bg-white flex items-center justify-center">
-                      <Image src={`/stamps/${stamp}.png`} alt={stamp} width={100} height={100} className="w-auto h-8" />
-                    </button>
-                  ))}
+              <Input type="text" value={username} onChange={handleUsernameChange} className="w-full" placeholder="名無しさん@おーぶん" />
+              <div className="relative mx-2">
+                <Button variant="secondary" onClick={() => setIsSmileDropdownOpen(!isSmileDropdownOpen)}>ｽﾀﾝﾌﾟ</Button>
+                <div ref={smileDropdownRef} className={`flex flex-wrap gap-2 absolute z-10 mt-2 right-0 w-64 bg-white rounded-sm border border-zinc-200 special-shadow p-2 transition-all duration-200 ease-in-out ${ isSmileDropdownOpen ? "scale-100 opacity-100" : "scale-95 opacity-0 pointer-events-none"}`}>
+                  {stamps.map((stamp) => (<button key={stamp} onClick={() => handleStampClick(stamp)} className="w-10 h-10 aspect-square hover:bg-zinc-200 duration-200 bg-white flex items-center justify-center"><Image src={`/stamps/${stamp}.png`} alt={stamp} width={100} height={100} className="w-auto h-8" /></button>))}
                 </div>
               </div>
+              <Button onClick={sendMessage}>送信</Button>
             </div>
+            <textarea value={message} onChange={(e) => setMessage(e.target.value)} className="mt-2 resize-none flex items-center p-4 overflow-hidden rounded-sm border shadow-sm bg-white border-zinc-200 focus:ring-2 focus:border-blue-400 focus:ring-blue-50 duration-200 outline-none" placeholder="メッセージを入力してください" rows={2}/>
             </div>
         <div className="mt-8 space-y-4 flex flex-col">
           {messages.length > 0 ? (
@@ -427,15 +422,15 @@ export default function RoomPage() {
               });
 
               return (
-                <div key={index} className="p-4 bg-white shadow-sm border border-zinc-200 hover:bg-zinc-50 rounded-sm flex flex-col">
+                <div key={index} className="p-4 bg-white shadow-sm border border-zinc-200 hover:bg-zinc-50/50 rounded-sm flex flex-col">
                   <div className="flex items-center mb-2">
                     <Avatar name={msg.username} />
                     <p className="text-sm font-bold mx-2 line-clamp-1">{msg.username}</p>
                     <p className="text-sm text-zinc-400 whitespace-nowrap">{formatRelativeTime(msg.createdAt)}</p>
                   </div>
                   {msg.replyTo && (
-                      <div className="bg-zinc-50 p-2 rounded-lg border-l-4 border-blue-400 mb-2">
-                        <p className="text-sm text-zinc-600 mb-0.5">In reply to:</p>
+                      <div className="p-2 rounded-sm shadow-sm border-l-4 border-blue-600 mb-2 flex items-center bg-zinc-50">
+                        <p className="text-sm text-zinc-600 mb-0.5">リプライ:</p>
                         {messages.find((m) => m.id === msg.replyTo)?.text && (
                           <p className="text-sm text-zinc-600">{messages.find((m) => m.id === msg.replyTo)?.text}</p>
                         )}

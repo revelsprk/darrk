@@ -13,13 +13,13 @@ const Avatar: React.FC<AvatarProps> = ({ name, size = 'md' }) => {
     lg: 'w-16 h-16', // large size
   };
 
-  const imageUrl = `https://api.dicebear.com/9.x/thumbs/svg?seed=${name}&backgroundColor=f472b6,facc15,60a5fa,4ade80,c084fc&eyesColor=ffffff&mouthColor=ffffff&shapeColor[]`;
+  const imageUrl = `https://api.dicebear.com/9.x/pixel-art/svg?seed=${name}`;
 
   return (
     <img
       src={imageUrl}
       alt="^_^"
-      className={`select-none aspect-square bg-white flex items-center justify-center bg-yellow-400 text-white font-bold text-base rounded-sm ${sizeClasses[size]}`} // Tailwindのクラスを適用
+      className={`select-none aspect-square bg-white rounded-sm ${sizeClasses[size]}`} // Tailwindのクラスを適用
     />
   );
 };

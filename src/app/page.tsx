@@ -76,12 +76,12 @@ export default function Home() {
 
   return (
     <div>
-      <div className="px-8 py-4 flex items-center justify-center select-none h-16 bg-white sticky top-0 z-50 shadow-md">
-        <Link href="/" className="flex items-center"><Image src="/logo.svg" alt="Logo" width={100} height={100} className="h-6 w-fit mr-2" /><p className="font-bold">野獣ドットコム</p></Link>
+      <div className="px-8 py-4 flex items-center justify-center select-none h-16 bg-white/25 backdrop-blur-md sticky top-0 z-50 shadow-md">
+        <Link href="/" className="flex items-center"><Image src="/kuma.svg" alt="Logo" width={100} height={100} className="h-6 w-fit mr-2" /><p className="font-bold">810ch</p></Link>
       </div>
 
       <div className="md:container mx-auto p-4 md:p-8">
-        <div className="flex items-center px-4 h-10 overflow-hidden rounded-lg border shadow-sm bg-white border-zinc-200 focus-within:ring-4 focus-within:border-blue-400 focus-within:ring-blue-50 duration-200">
+        <div className="flex items-center px-4 h-10 overflow-hidden rounded-sm border shadow-sm bg-white border-zinc-200 focus-within:ring-2 focus-within:border-blue-400 focus-within:ring-blue-50 duration-200">
           <FiSearch className="mr-4 text-zinc-400" />
           <input
             placeholder="コミュニティを検索する"
@@ -100,13 +100,13 @@ export default function Home() {
 
         <div className="mt-8 grid grid-cols-1 md:grid-cols-4 gap-8">
           {filteredRooms.length > 0 && filteredRooms.map((room, index) => (
-            <div key={index} className="rounded-lg bg-white overflow-hidden hover:shadow-md duration-200 hover:translate-y-[-8px]">
-              <img src={`https://api.dicebear.com/9.x/identicon/svg?seed=${room.id}&rowColor=60a5fa&backgroundColor=bfdbfe`} alt="avatar" className="h-32 w-full object-cover" />
+            <div key={index} className="rounded-sm shadow-sm bg-white overflow-hidden hover:shadow-md duration-200 hover:translate-y-[-8px]">
+              <img src={`https://api.dicebear.com/9.x/pixel-art-neutral/svg?seed=${room.id}`} alt="avatar" className="h-32 w-full object-cover" />
               <div className="flex p-4">
                 <p className="text-lg line-clamp-2 mr-4">{room.name}</p>
                 <div className="ml-auto flex">
                   <Link href={`/${room.id}`}>
-                    <p className="px-4 py-2 rounded-lg bg-blue-600 text-white whitespace-nowrap">参加</p>
+                    <p className="px-4 py-2 rounded-sm font-bold bg-blue-600 text-white whitespace-nowrap">参加</p>
                   </Link>
                 </div>
               </div>
@@ -116,7 +116,7 @@ export default function Home() {
       </div>
 
       <div className="fixed right-8 bottom-8">
-        <Button icon={<FiPlus />} onClick={() => setShowModal(true)} variant="secondary" className="shadow-lg">コミュニティを新規作成</Button>
+        <Button icon={<FiPlus />} onClick={() => setShowModal(true)} variant="secondary" className="shadow-md">コミュニティを新規作成</Button>
       </div>
 
       {showModal && (
