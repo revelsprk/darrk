@@ -17,8 +17,12 @@ body {
   font-family: "DotGothic16", Arial, Helvetica, sans-serif;
 }
 
+.default {
+  font-family: "Inter", Arial, Helvetica, sans-serif;
+}
+
 .background-image {
-  position: fixed;  /* 固定表示 */
+  position: fixed;
   top: 0;
   left: 0;
   width: 120vw;
@@ -135,7 +139,7 @@ body {
 }
 
 .special-shadow {
-  box-shadow: 0 0 4px 2px rgb(0 0 0 / 0.1);
+  box-shadow: 0 0 6px 2px rgb(0 0 0 / 0.1);
 }
 
 .yaju {

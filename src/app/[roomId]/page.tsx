@@ -32,7 +32,7 @@ interface Vote {
   votes: number[];
 }
 
-const stamps = ["1", "2", "3", "4", "5", "6", "7"];
+const stamps = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"];
 
 export default function RoomPage() {
   const [message, setMessage] = useState("");
@@ -395,7 +395,7 @@ export default function RoomPage() {
 
           <div className="flex flex-col">
             {selectedReplyMessageId && (
-              <div className="p-2 rounded-sm shadow-sm border-l-4 border-blue-600 mb-4 flex items-center bg-zinc-50">
+              <div className="p-2 rounded-sm shadow-sm border-l-4 border-blue-600 mb-4 flex bg-zinc-50">
                   <p className="text-sm text-zinc-600 mr-2 whitespace-nowrap">リプライ:</p>
                   {messages.find((m) => m.id === selectedReplyMessageId)?.text && (
                     <p className="text-sm text-zinc-600 mr-2 line-clamp-2">
@@ -406,14 +406,18 @@ export default function RoomPage() {
               </div>
             )}
             <div className="flex items-center w-full">
-              <Input type="text" value={username} onChange={handleUsernameChange} className="w-full" placeholder="名無しさん@おーぶん" />
-              <div className="relative mx-2">
-                <Button variant="secondary" onClick={() => setIsSmileDropdownOpen(!isSmileDropdownOpen)}>ｽﾀﾝﾌﾟ</Button>
-                <div ref={smileDropdownRef} className={`flex flex-wrap gap-2 absolute z-10 mt-2 right-0 w-64 bg-white rounded-sm border border-zinc-200 special-shadow p-2 transition-all duration-200 ease-in-out ${ isSmileDropdownOpen ? "scale-100 opacity-100" : "scale-95 opacity-0 pointer-events-none"}`}>
-                  {stamps.map((stamp) => (<button key={stamp} onClick={() => handleStampClick(stamp)} className="w-10 h-10 aspect-square hover:bg-zinc-200 duration-200 bg-white flex items-center justify-center"><Image src={`/stamps/${stamp}.png`} alt={stamp} width={100} height={100} className="w-auto h-8" /></button>))}
-                </div>
+              <div className="w-full">
+                <Input type="text" value={username} onChange={handleUsernameChange} placeholder="名無しさん@おーぶん" />
               </div>
-              <Button onClick={sendMessage}>送信</Button>
+              <div className="ml-auto flex items-center">
+                <div className="relative mx-2">
+                  <Button variant="secondary" onClick={() => setIsSmileDropdownOpen(!isSmileDropdownOpen)}>ｽﾀﾝﾌﾟ</Button>
+                  <div ref={smileDropdownRef} className={`flex flex-wrap gap-2 absolute z-10 mt-2 right-0 w-64 bg-white rounded-sm special-shadow p-2 transition-all duration-200 ease-in-out ${ isSmileDropdownOpen ? "scale-100 opacity-100" : "scale-95 opacity-0 pointer-events-none"}`}>
+                    {stamps.map((stamp) => (<button key={stamp} onClick={() => handleStampClick(stamp)} className="w-10 h-10 aspect-square hover:bg-zinc-200 duration-200 bg-white flex items-center justify-center"><Image src={`/stamps/${stamp}.png`} alt={stamp} width={100} height={100} className="w-auto h-8" /></button>))}
+                  </div>
+                </div>
+                <Button onClick={sendMessage}>送信</Button>
+              </div>
             </div>
             <textarea value={message} onChange={(e) => setMessage(e.target.value)} className="mt-2 resize-none flex items-center p-4 overflow-hidden rounded-sm border shadow-sm bg-white border-zinc-200 focus:ring-2 focus:border-blue-400 focus:ring-blue-50 duration-200 outline-none" placeholder="メッセージを入力してください" rows={2}/>
             </div>
@@ -443,12 +447,12 @@ export default function RoomPage() {
                       }}>
                         <p className="text-sm text-zinc-600 mr-2 whitespace-nowrap">リプライ:</p>
                         {messages.find((m) => m.id === msg.replyTo)?.text && (
-                          <p className="text-sm text-zinc-600 line-clamp-2 default">{messages.find((m) => m.id === msg.replyTo)?.text}</p>
+                          <p className="text-sm text-zinc-600 text-left line-clamp-2">{messages.find((m) => m.id === msg.replyTo)?.text}</p>
                         )}
                       </button>
                     )}
                   <div
-                    className="md flex flex-col whitespace-pre-wrap default"
+                    className="md flex flex-col whitespace-pre-wrap overflow-x-hidden"
                     dangerouslySetInnerHTML={{ __html: marked(formattedText) }}
                   />
 
@@ -475,18 +479,16 @@ export default function RoomPage() {
     
     {isReplyModalOpen && selectedReplyMessage && (
       <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur z-50">
-        <div className="bg-white rounded-sm p-6 md:w-1/4 w-3/4">
-          <h3 className="font-bold text-xl mb-4">リプライ元メッセージ</h3>
-          <div className="mb-4">
+        <div className="bg-white rounded-sm p-4 md:w-1/4 w-3/4">
+          <div>
             <div className="flex items-center mb-2">
               <Avatar name={selectedReplyMessage.username} />
               <p className="text-sm font-bold mx-2 line-clamp-1">{selectedReplyMessage.username}</p>
+              <p className="text-sm text-zinc-400 whitespace-nowrap">{formatRelativeTime(selectedReplyMessage.createdAt)}</p>
             </div>
-            <p className="mt-2 text-sm default text-zinc-600">{selectedReplyMessage.text}</p>
+            <p className="my-4 text-sm text-zinc-600">{selectedReplyMessage.text}</p>
           </div>
-          <Button className="mt-4 ml-auto" onClick={() => setIsReplyModalOpen(false)} variant="secondary">
-            閉じる
-          </Button>
+          <Button className="ml-auto" onClick={() => setIsReplyModalOpen(false)} variant="secondary" size="sm">閉じる</Button>
         </div>
       </div>
     )}

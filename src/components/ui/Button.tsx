@@ -19,7 +19,7 @@ const Button: React.FC<ButtonProps> = ({
   children,
   size = 'md',
 }) => {
-  const baseStyles = 'flex items-center rounded-sm whitespace-nowrap duration-200 px-4 py-1.5 font-bold';
+  const baseStyles = 'flex items-center rounded-sm whitespace-nowrap duration-200 px-4 py-1.5 font-bold select-none';
 
   const variantStyles = {
     primary: 'bg-blue-600 text-white',
