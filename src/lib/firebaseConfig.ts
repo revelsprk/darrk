@@ -2,12 +2,12 @@ import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBfzrxipENVpBBbf0pJhqJl2rwEdzDGmuQ",
-  authDomain: "dark-matter-world.firebaseapp.com",
-  projectId: "dark-matter-world",
-  storageBucket: "dark-matter-world.firebasestorage.app",
-  messagingSenderId: "811998812222",
-  appId: "1:811998812222:web:b78d3b1e4cf15a140dd96f"
+  apiKey: "AIzaSyB0bBPJ15CQQmZyuDsOCN0USkxWg6xOXwI",
+  authDomain: "yaju-chan.firebaseapp.com",
+  projectId: "yaju-chan",
+  storageBucket: "yaju-chan.firebasestorage.app",
+  messagingSenderId: "302397767958",
+  appId: "1:302397767958:web:9ebfb73617ce5dafea1037"
 };
 
 const app = initializeApp(firebaseConfig);
