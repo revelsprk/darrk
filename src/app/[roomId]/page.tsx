@@ -349,7 +349,7 @@ export default function RoomPage() {
             </div>)}
       
       {/* Body */}
-      <div className="p-4 md:py-8 md:max-w-md w-full mx-auto">
+      <div className="py-8 px-4 md:px-0 md:max-w-md w-full mx-auto">
             {votes.length > 0 && (<div className="space-y-4 mb-8 md:hidden">
               {votes.map((vote) => (
                 <div key={vote.id} className="p-4 rounded-sm bg-white shadow-sm border border-zinc-200">
