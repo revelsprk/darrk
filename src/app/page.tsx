@@ -77,7 +77,7 @@ export default function Home() {
 
   return (
     <div>
-      <div className="px-8 py-4 flex items-center justify-center select-none h-16 bg-white/25 backdrop-blur-md sticky top-0 z-50 shadow-md">
+      <div className="px-8 py-4 flex items-center justify-center select-none h-16 bg-white md:bg-white/25 backdrop-blur-md sticky top-0 z-50 shadow-md">
         <Link href="/" className="flex items-center"><Image src="/kuma.svg" alt="Logo" width={100} height={100} className="h-6 w-fit mr-2" /><p className="font-bold">810ch</p></Link>
       </div>
 

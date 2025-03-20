@@ -294,7 +294,7 @@ export default function RoomPage() {
       </>}
 
       {/* Header */}
-      <div className="px-8 py-4 flex items-center select-none h-16 bg-white/25 backdrop-blur-md z-50 sticky top-0 shadow-md">
+      <div className="px-8 py-4 flex items-center select-none h-16 bg-white md:bg-white/25 backdrop-blur-md z-50 sticky top-0 shadow-md">
         <Link href="/" className="flex items-center"><Image src="/azarashi.svg" alt="Logo" width={100} height={100} className="h-6 w-fit" /></Link><p className="mx-2 line-clamp-1 font-bold">{roomName || "Loading..."}</p>
         <div className="ml-auto relative z-10">
           <Button variant="outline" size="sm" onClick={() => setIsDropdownOpen(!isDropdownOpen)}>設定</Button>
