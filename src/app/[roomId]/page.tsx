@@ -349,7 +349,7 @@ export default function RoomPage() {
             </div>)}
       
       {/* Body */}
-      <div className="py-8 px-4 md:px-0 md:max-w-md w-full mx-auto">
+      <div className="pt-4 mb-8 px-4 md:px-0 md:max-w-md w-full mx-auto">
             {votes.length > 0 && (<div className="space-y-4 mb-8 md:hidden">
               {votes.map((vote) => (
                 <div key={vote.id} className="p-4 rounded-sm bg-white shadow-sm border border-zinc-200">
@@ -393,7 +393,7 @@ export default function RoomPage() {
               ))}
             </div>)}
 
-          <div className="flex flex-col">
+          <div className="mt-4 flex flex-col">
             {selectedReplyMessageId && (
               <div className="p-2 rounded-sm shadow-sm border-l-4 border-blue-600 mb-4 flex bg-zinc-50">
                   <p className="text-sm text-zinc-600 mr-2 whitespace-nowrap">リプライ:</p>
