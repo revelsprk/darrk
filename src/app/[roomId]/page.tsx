@@ -347,7 +347,7 @@ export default function RoomPage() {
                 </div>
               ))}
             </div>)}
-      
+
       {/* Body */}
       <div className="py-4 md:py-8 px-4 md:px-0 md:max-w-md w-full mx-auto">
             {votes.length > 0 && (<div className="space-y-4 mb-8 md:hidden">

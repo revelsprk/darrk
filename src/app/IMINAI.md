@@ -7,7 +7,6 @@ import { FiPlus, FiSearch } from "react-icons/fi";
 import Image from "next/image";
 import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
-import { useRouter } from 'next/navigation';
 
 interface Room {
   id: string;
@@ -15,7 +14,6 @@ interface Room {
 }
 
 export default function Home() {
-  const router = useRouter();
   const [roomName, setRoomName] = useState("");
   const [roomId, setRoomId] = useState("");
   const [rooms, setRooms] = useState<Room[]>([]);
@@ -23,12 +21,6 @@ export default function Home() {
   const [searchQuery, setSearchQuery] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [showModal, setShowModal] = useState(false);
-
-  const handleJoinRoom = (roomId: string) => {
-    if (window.confirm("今日分の宿題を終わらせましたか？")) {
-      router.push(`/${roomId}`);
-    }
-  };
 
   useEffect(() => {
     const unsubscribe = onSnapshot(collection(db, "rooms"), (querySnapshot) => {
@@ -114,7 +106,7 @@ export default function Home() {
               <div className="flex items-center md:items-start w-full p-4">
                 <p className="text-lg line-clamp-2 mr-4">{room.name}</p>
                 <div className="ml-auto">
-                  <Button onClick={() => handleJoinRoom(room.id)}  className="px-4 py-2 rounded-sm font-bold bg-blue-600 text-white whitespace-nowrap">参加</Button>
+                  <Link href={`/${room.id}`}><p className="px-4 py-2 rounded-sm font-bold bg-blue-600 text-white whitespace-nowrap">参加</p></Link>
                 </div>
               </div>
             </div>
