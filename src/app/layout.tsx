@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import "./globals.css";
+import "./page.tsx";
 
 export const metadata: Metadata = {
   title: "810ch",
