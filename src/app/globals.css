@@ -27,7 +27,7 @@ body {
   left: 0;
   width: 120vw;
   height: 120vh;
-  background-image: url('/beast.webp');
+  background-image: url('/mrbeast.webp');
   background-size: cover;
   background-position: center;
   filter: blur(64px);
