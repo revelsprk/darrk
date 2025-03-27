@@ -24,7 +24,7 @@ const VoteModal: React.FC<VoteModalProps> = ({
 
   return (
     <div className="z-50 fixed inset-0 flex justify-center items-center bg-black bg-opacity-50 backdrop-blur">
-      <div className="bg-white p-6 rounded-sm w-3/4 md:w-1/4">
+      <div className="bg-white p-6 rounded-md w-3/4 md:w-1/4">
         <h2 className="text-xl font-normal mb-4">投票を作成する</h2>
         <Input
           type="text"

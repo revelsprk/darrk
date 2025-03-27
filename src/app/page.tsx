@@ -82,7 +82,7 @@ export default function Home() {
       </div>
 
       <div className="md:container mx-auto p-4 md:p-8">
-        <div className="flex items-center px-4 h-10 overflow-hidden rounded-sm border shadow-sm bg-white border-zinc-200 focus-within:ring-2 focus-within:border-blue-400 focus-within:ring-blue-50 duration-200">
+        <div className="flex items-center px-4 h-10 overflow-hidden rounded-md border shadow-sm bg-white border-zinc-200 focus-within:ring-2 focus-within:border-blue-400 focus-within:ring-blue-50 duration-200">
           <FiSearch className="mr-4 text-zinc-400" />
           <input
             placeholder="コミュニティを検索する"
@@ -101,12 +101,12 @@ export default function Home() {
 
         <div className="mt-8 grid grid-cols-1 md:grid-cols-4 gap-8">
           {filteredRooms.length > 0 && filteredRooms.map((room, index) => (
-            <div key={index} className="flex flex-row md:flex-col rounded-sm shadow-sm bg-white overflow-hidden hover:shadow-md duration-200 hover:translate-y-[-8px] h-16 md:h-auto">
+            <div key={index} className="flex flex-row md:flex-col rounded-md shadow-sm bg-white overflow-hidden hover:shadow-md duration-200 hover:translate-y-[-8px] h-16 md:h-auto">
               <img src={`https://api.dicebear.com/9.x/thumbs/svg?seed=${room.id}&backgroundColor=e4e4e7&eyesColor=a1a1aa&mouthColor=a1a1aa&shapeColor=transparent`} alt="avatar" className="md:h-32 h-16 md:w-full bg-zinc-200 w-16" />
               <div className="flex items-center md:items-start w-full p-4">
                 <p className="text-lg line-clamp-2 mr-4">{room.name}</p>
                 <div className="ml-auto">
-                  <Link href={`/${room.id}`}><p className="px-4 py-2 rounded-sm font-bold bg-blue-600 text-white whitespace-nowrap">参加</p></Link>
+                  <Link href={`/${room.id}`}><p className="px-4 py-2 rounded-md font-bold bg-blue-600 text-white whitespace-nowrap">参加</p></Link>
                 </div>
               </div>
             </div>
@@ -120,7 +120,7 @@ export default function Home() {
 
       {showModal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50 backdrop-blur">
-          <div className="bg-white p-6 rounded-sm w-3/4 md:w-1/4">
+          <div className="bg-white p-6 rounded-md w-3/4 md:w-1/4">
             <h1 className="text-xl mb-4 font-bold">コミュニティを新規作成</h1>
             <Input
               type="text"

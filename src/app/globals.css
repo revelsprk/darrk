@@ -14,11 +14,11 @@
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: "DotGothic16", Arial, Helvetica, sans-serif;
+  font-family: "Inter", Arial, Helvetica, sans-serif;
 }
 
-.default {
-  font-family: "Inter", Arial, Helvetica, sans-serif;
+.dot {
+  font-family: "DotGothic16", Arial, Helvetica, sans-serif;
 }
 
 .background-image {

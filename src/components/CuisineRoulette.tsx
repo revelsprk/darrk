@@ -44,7 +44,7 @@ export default function CuisineRoulette() {
     };
 
     return (
-        <div className="max-w-64 w-full fixed top-24 left-8 bg-white p-4 border border-zinc-200 shadow-sm hidden md:block rounded-sm">
+        <div className="max-w-64 w-full fixed top-24 left-8 bg-white p-4 border border-zinc-200 shadow-sm hidden md:block rounded-md">
             <p className="font-bold">おすすめ食べ物ルーレット</p>
             <p className="text-sm my-2 text-zinc-400">何を食べれば良いか分からない時に回してください。</p>
             <Button size="sm" onClick={getRandomFood}>回す</Button>
