@@ -78,7 +78,7 @@ export default function Home() {
   return (
     <div>
       <div className="px-8 py-4 flex items-center justify-center select-none h-16 bg-white sticky top-0 z-50 shadow-md">
-        <div><Link href="/"><Image src="/mediakit/logotype.svg" alt="Logo" width={100} height={100} className="h-6 min-h-[24px] w-fit" /></Link></div>
+        <div className="h-6"><Link href="/" className="h-6"><Image src="/mediakit/logotype.svg" alt="Logo" width={100} height={100} className="h-6 min-h-[24px] w-fit" /></Link></div>
       </div>
 
       <div className="md:container mx-auto px-4 md:px-0 py-8">
@@ -94,7 +94,7 @@ export default function Home() {
         <div className="mt-8 grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-8">
           {filteredRooms.length > 0 && filteredRooms.map((room, index) => (
             <div key={index} className="flex flex-row md:flex-col rounded-md shadow-sm bg-white overflow-hidden hover:shadow-md duration-200 hover:translate-y-[-8px] h-16 md:h-auto">
-              <img src={`https://api.dicebear.com/9.x/thumbs/svg?seed=${room.id}&backgroundColor=e5e7eb&eyesColor=9ca3af&mouthColor=9ca3af&shapeColor=transparent`} alt="avatar" className="md:h-32 h-16 md:w-full bg-gray-200 w-16" />
+              <img src={`https://api.dicebear.com/9.x/thumbs/svg?seed=${room.id}&backgroundColor=e5e7eb&eyesColor=9ca3af&mouthColor=9ca3af&shapeColor=transparent`} className="md:h-32 h-16 md:w-full bg-gray-200 w-16" />
               <div className="flex items-center md:items-start w-full p-4">
                 <p className="text-lg line-clamp-2 mr-4 font-bold">{room.name}</p>
                 <div className="ml-auto">
