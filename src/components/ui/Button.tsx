@@ -22,7 +22,7 @@ const Button: React.FC<ButtonProps> = ({
   const baseStyles = 'flex items-center rounded-md whitespace-nowrap duration-200 px-4 py-1.5 font-bold select-none';
 
   const variantStyles = {
-    primary: 'bg-blue-600 text-white',
+    primary: 'bg-gray-800 text-white',
     secondary: 'bg-gray-200/50 text-gray-600',
     danger: 'bg-red-50 text-red-600',
     outline: 'bg-white text-zinc-800 border border-zinc-200',

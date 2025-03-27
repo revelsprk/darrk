@@ -294,10 +294,10 @@ export default function RoomPage() {
       </>}
 
       {/* Header */}
-      <div className="px-8 py-4 flex items-center select-none h-16 bg-white md:bg-white/25 backdrop-blur-md z-50 sticky top-0 shadow-md">
-        <Link href="/" className="flex items-center"><Image src="/azarashi.svg" alt="Logo" width={100} height={100} className="h-6 w-fit" /></Link><p className="mx-2 line-clamp-1 font-bold">{roomName || "Loading..."}</p>
+      <div className="px-8 py-4 flex items-center select-none h-16 bg-white z-50 sticky top-0 shadow-md">
+        <Link href="/" className="flex items-center"><Image src="/mediakit/logotype.svg" alt="Logo" width={100} height={100} className="h-6 w-fit" /></Link>
         <div className="ml-auto relative z-10">
-          <Button variant="outline" size="sm" onClick={() => setIsDropdownOpen(!isDropdownOpen)}>設定</Button>
+          <Button variant="outline" onClick={() => setIsDropdownOpen(!isDropdownOpen)}>設定</Button>
           <div ref={dropdownRef} className={`absolute right-0 mt-2 w-64 bg-white rounded-md special-shadow p-2 transition-all duration-200 ease-in-out ${ isDropdownOpen ? "scale-100 opacity-100" : "scale-95 opacity-0 pointer-events-none"}`}>
             <Button onClick={() => setIsVoteModalOpen(true)} size="sm" variant="text" icon={<FiPlus />} className="rounded-none w-full font-normal">投票を作成する</Button>
             <Button onClick={deleteRoom} variant="text" size="sm" icon={<FiTrash />} className="rounded-none w-full font-normal">コミュニティを削除する</Button>
@@ -413,7 +413,7 @@ export default function RoomPage() {
               </div>
               <div className="ml-auto flex items-center">
                 <div className="relative mx-2">
-                  <Button variant="secondary" onClick={() => setIsSmileDropdownOpen(!isSmileDropdownOpen)}>スタンプ</Button>
+                  <Button variant="outline" onClick={() => setIsSmileDropdownOpen(!isSmileDropdownOpen)}>スタンプ</Button>
                   <div ref={smileDropdownRef} className={`flex flex-wrap gap-2 absolute z-10 mt-2 right-0 w-64 bg-white rounded-md special-shadow p-2 transition-all duration-200 ease-in-out ${ isSmileDropdownOpen ? "scale-100 opacity-100" : "scale-95 opacity-0 pointer-events-none"}`}>
                     {stamps.map((stamp) => (<button key={stamp} onClick={() => handleStampClick(stamp)} className="w-10 h-10 aspect-square hover:bg-zinc-200 duration-200 bg-white flex items-center justify-center"><Image src={`/stamps/${stamp}.png`} alt={stamp} width={100} height={100} className="w-auto h-8" /></button>))}
                   </div>
@@ -423,7 +423,10 @@ export default function RoomPage() {
             </div>
             <textarea value={message} onChange={(e) => setMessage(e.target.value)} className="mt-2 resize-none flex items-center p-4 overflow-hidden rounded-md border shadow-sm bg-white border-zinc-200 focus:ring-2 focus:border-blue-400 focus:ring-blue-50 duration-200 outline-none" placeholder="メッセージを入力してください" rows={2}/>
             </div>
-        <div className="mt-8 space-y-4 flex flex-col">
+
+            <h2 className="text-xl mt-8 mb-4">{roomName}</h2>
+
+        <div className="space-y-4 flex flex-col">
           {messages.length > 0 ? (
             messages.map((msg, index) => {
               const formattedText = msg.text.replace(/:stamp_([a-zA-Z0-9_]+)/g, (match, stamp) => {
@@ -438,7 +441,6 @@ export default function RoomPage() {
                     <p className="text-sm text-zinc-400 whitespace-nowrap">{formatRelativeTime(msg.createdAt)}</p>
                   </div>
 
-    
                   {msg.replyTo && (
                       <button className="p-2 rounded-sm shadow-sm border-l-4 border-blue-600 mb-2 flex bg-zinc-50" onClick={() => {
                         const replyMessage = messages.find((m) => m.id === msg.replyTo);
