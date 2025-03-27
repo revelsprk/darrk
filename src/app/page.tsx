@@ -77,36 +77,28 @@ export default function Home() {
 
   return (
     <div>
-      <div className="px-8 py-4 flex items-center justify-center select-none h-16 bg-white md:bg-white/25 backdrop-blur-md sticky top-0 z-50 shadow-md">
-        <Link href="/" className="flex items-center"><Image src="/kuma.svg" alt="Logo" width={100} height={100} className="h-6 w-fit mr-2" /><p className="font-bold">810ch</p></Link>
+      <div className="px-8 py-4 flex items-center justify-center select-none h-16 bg-white sticky top-0 z-50 shadow-md">
+        <Link href="/" className="flex items-center"><Image src="/mediakit/logotype.svg" alt="Logo" width={100} height={100} className="h-6 w-fit" /></Link>
       </div>
 
-      <div className="md:container mx-auto p-4 md:p-8">
-        <div className="flex items-center px-4 h-10 overflow-hidden rounded-md border shadow-sm bg-white border-zinc-200 focus-within:ring-2 focus-within:border-blue-400 focus-within:ring-blue-50 duration-200">
-          <FiSearch className="mr-4 text-zinc-400" />
-          <input
-            placeholder="コミュニティを検索する"
-            className="bg-transparent outline-none h-10 w-full placeholder:text-zinc-400"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)} // Update search query on input change
-          />
-        </div>
+      <div className="md:container mx-auto px-4 md:px-0 py-8">
+          <Input placeholder="コミュニティを検索する" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} icon={<FiSearch />} />
 
         {/* Message when no communities found */}
         {filteredRooms.length === 0 && (
           <div className="mt-8 flex items-center justify-center">
-            <p className="text-zinc-400">コミュニティが見つかりませんでした。</p>
+            <p className="text-gray-400">コミュニティが見つかりませんでした。</p>
           </div>
         )}
 
-        <div className="mt-8 grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div className="mt-8 grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-8">
           {filteredRooms.length > 0 && filteredRooms.map((room, index) => (
             <div key={index} className="flex flex-row md:flex-col rounded-md shadow-sm bg-white overflow-hidden hover:shadow-md duration-200 hover:translate-y-[-8px] h-16 md:h-auto">
-              <img src={`https://api.dicebear.com/9.x/thumbs/svg?seed=${room.id}&backgroundColor=e4e4e7&eyesColor=a1a1aa&mouthColor=a1a1aa&shapeColor=transparent`} alt="avatar" className="md:h-32 h-16 md:w-full bg-zinc-200 w-16" />
+              <img src={`https://api.dicebear.com/9.x/thumbs/svg?seed=${room.id}&backgroundColor=e5e7eb&eyesColor=9ca3af&mouthColor=9ca3af&shapeColor=transparent`} alt="avatar" className="md:h-32 h-16 md:w-full bg-gray-200 w-16" />
               <div className="flex items-center md:items-start w-full p-4">
-                <p className="text-lg line-clamp-2 mr-4">{room.name}</p>
+                <p className="text-lg line-clamp-2 mr-4 font-bold">{room.name}</p>
                 <div className="ml-auto">
-                  <Link href={`/${room.id}`}><p className="px-4 py-2 rounded-md font-bold bg-blue-600 text-white whitespace-nowrap">参加</p></Link>
+                  <Link href={`/${room.id}`}><p className="px-4 py-2 rounded-md font-bold bg-gray-800 text-white whitespace-nowrap">参加</p></Link>
                 </div>
               </div>
             </div>

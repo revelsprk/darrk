@@ -3,7 +3,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "810ch",
-  description: "This website is powered by Vercel.",
+  description: "おまたせ アイスティーしかなかったけど いいかな？",
 };
 
 export default function RootLayout({
