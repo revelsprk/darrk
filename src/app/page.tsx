@@ -77,7 +77,7 @@ export default function Home() {
 
   return (
     <div>
-      <div className="px-8 py-4 flex items-center justify-center select-none h-16 bg-white sticky top-0 z-50 shadow-md">
+      <div className="px-8 flex items-center justify-center select-none h-16 bg-white sticky top-0 z-50 shadow-md">
         <div className="h-6"><Link href="/" className="h-6"><Image src="/mediakit/logotype.svg" alt="Logo" width={100} height={100} className="h-6 min-h-[24px] w-fit" /></Link></div>
       </div>
 
