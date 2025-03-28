@@ -4,7 +4,6 @@ import { db } from "@/lib/firebaseConfig";
 import { collection, onSnapshot, doc, setDoc } from "firebase/firestore";
 import Link from "next/link";
 import { FiPlus, FiSearch } from "react-icons/fi";
-import Image from "next/image";
 import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
 
