@@ -15,7 +15,7 @@ body {
   color: var(--foreground);
   background: var(--background);
   font-family: "Inter", Arial, Helvetica, sans-serif;
-  letter-spacing: -0.5px;
+  letter-spacing: -0.75px;
 }
 
 .dot {
