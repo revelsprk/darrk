@@ -78,7 +78,7 @@ export default function Home() {
   return (
     <div>
       <div className="flex items-center justify-center select-none h-16 bg-white sticky top-0 z-50 shadow-md">
-        <Link href="/"><Image src="/mediakit/logotype.svg" alt="Logo" width={24} height={24} className="h-6 w-fit" /></Link>
+        <Link href="/"><img src="/mediakit/logotype.svg" alt="Logo" className="min-h-6 h-6 w-fit" /></Link>
       </div>
 
       <div className="md:container mx-auto px-4 md:px-0 py-8">
