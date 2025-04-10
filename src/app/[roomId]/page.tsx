@@ -295,7 +295,7 @@ export default function RoomPage() {
 
       {/* Header */}
       <div className="px-8 py-4 flex items-center select-none h-16 bg-white z-50 sticky top-0 shadow-md">
-        <Link href="/" className="w-fit"><img src="/mediakit/logotype.svg" alt="Logo" className="min-h-6 h-6 w-fit" /></Link>
+        <Link href="/" className="w-fit"><Image src="/mediakit/logotype.svg" alt="Logo" width={100} height={100} className="min-h-6 h-6 w-fit" /></Link>
       <div className="ml-auto relative z-10">
           <Button variant="outline" onClick={() => setIsDropdownOpen(!isDropdownOpen)}>設定</Button>
           <div ref={dropdownRef} className={`absolute right-0 mt-2 w-64 bg-white rounded-md special-shadow p-2 transition-all duration-200 ease-in-out ${ isDropdownOpen ? "scale-100 opacity-100" : "scale-95 opacity-0 pointer-events-none"}`}>
@@ -424,7 +424,7 @@ export default function RoomPage() {
             <textarea value={message} onChange={(e) => setMessage(e.target.value)} className="mt-2 resize-none flex items-center p-4 overflow-hidden rounded-md border shadow-sm bg-white border-zinc-200 focus:ring-2 focus:border-blue-400 focus:ring-blue-50 duration-200 outline-none" placeholder="メッセージを入力してください" rows={2}/>
             </div>
 
-            <h2 className="text-xl mt-8 mb-4">{roomName}</h2>
+            <h2 className="text-xl mt-8 mb-4">{roomName || "Loading..."}</h2>
 
         <div className="space-y-4 flex flex-col">
           {messages.length > 0 ? (
