@@ -2,10 +2,10 @@
 import { useState, useEffect, useRef } from "react";
 import { db } from "@/lib/firebaseConfig";
 import { collection, addDoc, query, orderBy, onSnapshot, Timestamp, doc, deleteDoc, getDocs, getDoc, updateDoc } from "firebase/firestore";
-import { usePathname } from "next/navigation"; 
-import { formatDistanceToNow } from "date-fns"; 
+import { usePathname } from "next/navigation";
+import { formatDistanceToNow } from "date-fns";
 import Link from "next/link";
-import { FiAlertCircle, FiPlus, FiTrash } from "react-icons/fi";
+import { FiPlus, FiTrash } from "react-icons/fi";
 import Avatar from "@/components/ui/Avatar";
 import { marked } from "marked";
 import VoteModal from "@/components/VoteModal";
@@ -49,16 +49,11 @@ export default function RoomPage() {
   const [isSmileDropdownOpen, setIsSmileDropdownOpen] = useState(false);
   const [selectedReplyMessageId, setSelectedReplyMessageId] = useState<string | null>(null);
   const [expandedVotes, setExpandedVotes] = useState<{ [key: string]: boolean }>({});
-  const [isBackgroundVisible, setIsBackgroundVisible] = useState(false);
   const [selectedReplyMessage, setSelectedReplyMessage] = useState<Message | null>(null);
   const [isReplyModalOpen, setIsReplyModalOpen] = useState(false);
 
   const dropdownRef = useRef<HTMLDivElement>(null);
   const smileDropdownRef = useRef<HTMLDivElement>(null);
-  
-  const hideBackground = () => {
-    setIsBackgroundVisible(prevState => !prevState);
-  };  
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -289,19 +284,14 @@ export default function RoomPage() {
 
   return (
     <div>
-      {isBackgroundVisible && <><div className="yaju fixed inset-0 bg-[url('/beast.webp')] bg-cover bg-center"></div>
-      <div className="yaju w-full h-screen fixed inset-0 backdrop-blur-md bg-white/50 flex items-center justify-center" />
-      </>}
-
       {/* Header */}
-      <div className="px-8 py-4 flex items-center select-none h-16 bg-white z-50 sticky top-0 shadow-md">
+      <div className="px-8 flex items-center select-none h-16 bg-white z-50 sticky top-0 shadow-md">
         <Link href="/" className="w-fit"><Image src="/mediakit/logotype.svg" alt="Logo" width={100} height={100} className="min-h-6 h-6 w-fit" /></Link>
       <div className="ml-auto relative z-10">
           <Button variant="outline" onClick={() => setIsDropdownOpen(!isDropdownOpen)}>設定</Button>
           <div ref={dropdownRef} className={`absolute right-0 mt-2 w-64 bg-white rounded-md special-shadow p-2 transition-all duration-200 ease-in-out ${ isDropdownOpen ? "scale-100 opacity-100" : "scale-95 opacity-0 pointer-events-none"}`}>
             <Button onClick={() => setIsVoteModalOpen(true)} size="sm" variant="text" icon={<FiPlus />} className="rounded-none w-full font-normal">投票を作成する</Button>
             <Button onClick={deleteRoom} variant="text" size="sm" icon={<FiTrash />} className="rounded-none w-full font-normal">コミュニティを削除する</Button>
-            <Button onClick={hideBackground} variant="danger" size="sm" icon={<FiAlertCircle />} className="rounded-none w-full font-normal overflow-hidden">ﾔｼﾞｭｾﾝﾊﾟｲｲｷｽｷﾞﾝｲｸｲｸｱｯｱｯｱｯｱｰﾔﾘﾏｽﾈ</Button>
           </div>
         </div>
       </div>
