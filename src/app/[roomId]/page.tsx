@@ -286,7 +286,7 @@ export default function RoomPage() {
     <div>
       {/* Header */}
       <div className="px-8 flex items-center select-none h-16 bg-white z-50 sticky top-0 shadow-md">
-        <Link href="/" className="w-fit"><Image src="/mediakit/logotype.svg" alt="Logo" width={100} height={100} className="min-h-6 h-6 w-fit" /></Link>
+        <Link href="/"><img src="/mediakit/logotype.svg" alt="Logo" className="min-h-6 h-6 w-fit" /></Link>
       <div className="ml-auto relative z-10">
           <Button variant="outline" onClick={() => setIsDropdownOpen(!isDropdownOpen)}>設定</Button>
           <div ref={dropdownRef} className={`absolute right-0 mt-2 w-64 bg-white rounded-md special-shadow p-2 transition-all duration-200 ease-in-out ${ isDropdownOpen ? "scale-100 opacity-100" : "scale-95 opacity-0 pointer-events-none"}`}>
