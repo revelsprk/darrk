@@ -6,6 +6,7 @@ import Link from "next/link";
 import { FiPlus, FiSearch } from "react-icons/fi";
 import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
+import Image from "next/image";
 
 interface Room {
   id: string;
@@ -76,12 +77,13 @@ export default function Home() {
 
   return (
     <div>
-      <div className="flex items-center justify-center select-none h-16 bg-white sticky top-0 z-50 shadow-md">
-        <Link href="/"><img src="/mediakit/logotype.svg" alt="Logo" className="min-h-6 h-6 w-fit" /></Link>
+      <div className="flex flex-col items-center my-8 select-none">
+        <Image src="/logo.svg" alt="Logo" width={100} height={100} className="w-16" />
+        <h1 className="mt-2 text-2xl font-bold">ᦔꪖ᥅᥅ᛕ</h1>
       </div>
 
-      <div className="md:container mx-auto px-4 md:px-0 py-8">
-          <Input placeholder="コミュニティを検索する" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} icon={<FiSearch />} />
+      <div className="md:w-3/4 md:mx-auto px-4 md:px-0">
+          <Input placeholder="コミュニティを検索" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} icon={<FiSearch />} />
 
         {/* Message when no communities found */}
         {filteredRooms.length === 0 && (
@@ -93,7 +95,7 @@ export default function Home() {
         <div className="mt-8 grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-8">
           {filteredRooms.length > 0 && filteredRooms.map((room, index) => (
             <div key={index} className="flex flex-row md:flex-col rounded-md shadow-sm bg-white overflow-hidden hover:shadow-md duration-200 hover:translate-y-[-8px] h-16 md:h-auto">
-              <img src={`https://api.dicebear.com/9.x/thumbs/svg?seed=${room.id}&backgroundColor=e5e7eb&eyesColor=9ca3af&mouthColor=9ca3af&shapeColor=transparent`} className="md:h-32 h-16 md:w-full bg-gray-200 w-16" />
+              <img src={`https://api.dicebear.com/9.x/thumbs/svg?seed=${room.id}&backgroundColor=bfdbfe&eyesColor=60a5fa&mouthColor=60a5fa&shapeColor=transparent`} className="md:h-32 h-16 md:w-full bg-blue-200 w-16" />
               <div className="flex items-center md:items-start w-full p-4">
                 <p className="text-lg line-clamp-2 mr-4 font-bold">{room.name}</p>
                 <div className="ml-auto">
