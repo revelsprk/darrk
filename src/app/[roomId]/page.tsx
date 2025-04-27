@@ -286,7 +286,7 @@ export default function RoomPage() {
     <div>
       {/* Header */}
       <div className="px-8 flex items-center select-none h-16 bg-white z-50 border-b sticky top-0">
-        <Link href="/"><h1 className="font-bold text-lg">江差家真.com</h1></Link>
+        <Link href="/"><h1 className="font-bold text-xl bg-gradient-to-r from-red-400 to-blue-400 text-transparent bg-clip-text font-bold text-3xl dot">江差家真.com</h1></Link>
       <div className="ml-auto relative z-10">
           <Button variant="outline" onClick={() => setIsDropdownOpen(!isDropdownOpen)}>設定</Button>
           <div ref={dropdownRef} className={`absolute right-0 mt-2 w-64 bg-white rounded-md special-shadow p-2 transition-all duration-200 ease-in-out ${ isDropdownOpen ? "scale-100 opacity-100" : "scale-95 opacity-0 pointer-events-none"}`}>

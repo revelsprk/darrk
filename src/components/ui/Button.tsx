@@ -23,7 +23,7 @@ const Button: React.FC<ButtonProps> = ({
 
   const variantStyles = {
     primary: 'bg-gray-800 text-white',
-    secondary: 'bg-gray-200/50 text-gray-600',
+    secondary: 'bg-gray-200 text-gray-600',
     danger: 'bg-red-50 text-red-600',
     outline: 'bg-white text-gray-800 border',
     text: "bg-transparent text-gray-800"

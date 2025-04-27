@@ -97,7 +97,7 @@ export default function Home() {
             <div key={index} className="flex flex-row md:flex-col rounded-md shadow-sm bg-white overflow-hidden hover:shadow-md duration-200 hover:translate-y-[-8px] h-16 md:h-auto">
               <img src={`https://api.dicebear.com/9.x/thumbs/svg?seed=${room.id}&backgroundColor=bfdbfe&eyesColor=60a5fa&mouthColor=60a5fa&shapeColor=transparent`} className="md:h-32 h-16 md:w-full bg-blue-200 w-16" />
               <div className="flex items-center md:items-start w-full p-4">
-                <p className="text-lg line-clamp-2 mr-4 font-bold">{room.name}</p>
+                <p className="text-lg line-clamp-1 md:line-clamp-2 mr-4 font-bold">{room.name}</p>
                 <div className="ml-auto">
                   <Link href={`/${room.id}`}><p className="px-4 py-2 rounded-md font-bold bg-gray-800 text-white whitespace-nowrap">参加</p></Link>
                 </div>
