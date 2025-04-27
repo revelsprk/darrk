@@ -25,8 +25,8 @@ const Button: React.FC<ButtonProps> = ({
     primary: 'bg-gray-800 text-white',
     secondary: 'bg-gray-200/50 text-gray-600',
     danger: 'bg-red-50 text-red-600',
-    outline: 'bg-white text-zinc-800 border border-zinc-200',
-    text: "bg-transparent text-zinc-800"
+    outline: 'bg-white text-gray-800 border',
+    text: "bg-transparent text-gray-800"
   };
 
   const sizeStyles = {
