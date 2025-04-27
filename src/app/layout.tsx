@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "893ch",
+  title: "ᦔꪖ᥅᥅ᛕ",
   description: "おまたせ アイスティーしかなかったけど いいかな？",
 };
 
